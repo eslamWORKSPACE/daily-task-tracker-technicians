@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>مهام الفنيين</title>
+  <style>
+    body { font-family: sans-serif; direction: rtl; padding: 20px; background-color: #f9f9f9; }
+    h1 { color: teal; }
+    input, button, textarea { display: block; margin: 10px 0; padding: 10px; width: 100%; max-width: 400px; }
+    .task, .expense { background: #fff; padding: 10px; margin-top: 10px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h1>📋 إضافة مهمة يومية</h1>
+  <input type="text" id="taskProject" placeholder="اسم المشروع">
+  <input type="text" id="taskType" placeholder="نوع الشغل">
+  <input type="text" id="taskTechnician" placeholder="اسم الفني">
+  <textarea id="taskDesc" placeholder="الوصف"></textarea>
+  <button onclick="addTask()">➕ إضافة المهمة</button>
+  <div id="taskList"></div>
+
+  <h1>📦 المصروفات والمشتريات</h1>
+  <input type="text" id="expType" placeholder="نوع المصروف">
+  <input type="number" id="expAmount" placeholder="المبلغ">
+  <textarea id="expNote" placeholder="ملاحظات (اختياري)"></textarea>
+  <button onclick="addExpense()">➕ إضافة المصروف</button>
+  <div id="expList"></div>
+
+  <script>
+    function addTask() {
+      const project = document.getElementById('taskProject').value;
+      const type = document.getElementById('taskType').value;
+      const tech = document.getElementById('taskTechnician').value;
+      const desc = document.getElementById('taskDesc').value;
+      if (project && type && tech) {
+        const task = document.createElement('div');
+        task.className = 'task';
+        task.innerText = `📌 ${project} - ${type} - ${tech}\n📄 ${desc}`;
+        document.getElementById('taskList').appendChild(task);
+        document.getElementById('taskProject').value = '';
+        document.getElementById('taskType').value = '';
+        document.getElementById('taskTechnician').value = '';
+        document.getElementById('taskDesc').value = '';
+      }
+    }
+
+    function addExpense() {
+      const type = document.getElementById('expType').value;
+      const amount = document.getElementById('expAmount').value;
+      const note = document.getElementById('expNote').value;
+      if (type && amount) {
+        const exp = document.createElement('div');
+        exp.className = 'expense';
+        exp.innerText = `💸 ${type} - ${amount} جنيه\n📝 ${note}`;
+        document.getElementById('expList').appendChild(exp);
+        document.getElementById('expType').value = '';
+        document.getElementById('expAmount').value = '';
+        document.getElementById('expNote').value = '';
+      }
+    }
+  </script>
+</body>
+</html>
